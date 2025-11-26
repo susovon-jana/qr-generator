@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- =========================================================
+       HEAD SECTION
+    ========================================================== -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QR Code Generator — Embedded Logo</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="file/qr-code-logo.png">
+
+  <!-- QR Code Styling Library -->
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- =========================================================
+       TOP HEADER
+    ========================================================== -->
+<header class="top-header" role="banner">
+  <div class="top-header-inner">
+
+    <!-- FIRST ROW — TITLE -->
+    <div class="header-title">
+      <h1>Advanced Barcode Generator</h1>
+    </div>
+
+    <!-- SECOND ROW — TWO FLOATING BOXES -->
+    <div class="mobile-box-row">
+
+      <!-- PROFILE BOX -->
+      <div class="profile-box">
+        <strong class="profile-name">Susovon Jana, Ph.D.</strong>
+        <a href="https://susovon.wixsite.com/susovon" 
+           target="_blank" 
+           class="profile-link">
+          Visit Profile →
+        </a>
+      </div>
+
+      <!-- BARCODE BOX (new) -->
+      <div class="barcode-box">
+        <a href="https://susovon-jana.github.io/bar-generator/" 
+           class="barcode-link">
+          <strong class="barcode-name">
+           Go to Barcode<br>Generator
+          </strong>
+
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</header>
+
+  <!-- =========================================================
+       MAIN WRAPPER
+    ========================================================== -->
+  <main class="container">
+
+    <section class="builder">
+
+      <!-- =====================================================
+           LEFT PANEL — INPUT FORM
+      ====================================================== -->
+      <form id="qr-form" class="panel form-panel" autocomplete="off" novalidate>
+        <h2>Input & Options</h2>
+
+        <!-- --------------------------
+             QR TYPE DROPDOWN
+        --------------------------- -->
+        <div class="input-group">
+          <label for="type">QR Type</label>
+          <select id="type" name="type">
+            
+            <option value="url" >Website (URL)</option>
+            <option value="phone">Phone Number</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="email">Email</option>
+            <option value="text" selected>Custom Text</option>
+            <option value="wifi">Wi-Fi</option>
+            <option value="upi">UPI</option>
+            <option value="sms">SMS</option>
+            <option value="multiurl">Multi-URL</option>
+            <option value="contact">Contact (vCard)</option>
+
+          </select>
+        </div>
+
+        <!-- --------------------------
+             AUTO-GENERATED INPUT FIELDS
+        --------------------------- -->
+        <div id="inputs-area" class="card"></div>
+
+        <!-- =====================================================
+             APPEARANCE OPTIONS
+        ====================================================== -->
+        <fieldset class="card">
+          <legend>Appearance</legend>
+
+          <div class="input-grid">
+
+            <!-- Background -->
+            <div class="input-group">
+              <label><input type="checkbox" id="hasBackground" checked /> Include background</label>
+            </div>
+
+            <div class="input-group">
+              <label for="bgColor">Background color</label>
+              <input type="color" id="bgColor" value="#ffffff" />
+            </div>
+
+            <!-- Colors -->
+            <div class="input-group">
+              <label for="qrColor">QR color</label>
+              <input type="color" id="qrColor" value="#000000" />
+            </div>
+
+            <!-- Dot and Eye Style -->
+            <div class="input-group">
+              <label for="dotStyle">Dot style</label>
+              <select id="dotStyle">
+                <option value="square">Square</option>
+                <option value="rounded">Rounded</option>
+                <option value="dots">Dots</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="eyeStyle">Corner style</label>
+              <select id="eyeStyle">
+                <option value="square">Square</option>
+                <option value="rounded">Rounded</option>
+              </select>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- =====================================================
+             LOGO OPTIONS
+        ====================================================== -->
+        <fieldset class="card">
+          <legend>Logo (embedded)</legend>
+
+          <!-- Upload -->
+          <div class="input-group">
+            <label for="logoUpload">Upload logo (PNG / JPG / SVG)</label>
+            <input type="file" id="logoUpload" accept="image/*" />
+            <small class="muted">
+              Logo will be embedded into a reserved white area — size controlled below.
+            </small>
+          </div>
+
+          <!-- Sliders -->
+          <div class="input-grid">
+
+            <div class="input-group">
+              <label>Logo reserved area (%)</label>
+              <input type="range" id="logoSize" min="8" max="40" value="18" />
+              <div class="range-label"><span id="logoSizeLabel">18%</span></div>
+            </div>
+
+            <div class="input-group">
+              <label>Logo corner radius (%)</label>
+              <input type="range" id="logoRadius" min="0" max="50" value="10" />
+              <div class="range-label"><span id="logoRadiusLabel">10%</span></div>
+            </div>
+
+          </div>
+
+          <div style="margin-top:10px;">
+            <button type="button" id="removeLogo" class="btn danger full-width">
+              Remove Logo
+            </button>
+          </div>
+        </fieldset>
+
+        <!-- =====================================================
+             EXPORT OPTIONS
+        ====================================================== -->
+        <fieldset class="card">
+          <legend>Export / Resolution</legend>
+
+          <div class="input-grid">
+
+            <div class="input-group">
+              <label for="resolution">Resolution (px)</label>
+              <select id="resolution">
+                <option value="240">240</option>
+                <option value="480">480</option>
+                <option value="720">720</option>
+                <option value="1080" selected>1080</option>
+                <option value="1440">1440</option>
+                <option value="1800">1800</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label for="format">Format</label>
+              <select id="format">
+                <option value="png">PNG</option>
+                <option value="svg">SVG</option>
+              </select>
+            </div>
+
+          </div>
+
+          <p class="muted-text">Live preview updates automatically as you change inputs.</p>
+
+          <p id="error" class="error" role="status" aria-live="polite"></p>
+        </fieldset>
+
+      </form>
+
+      <!-- =====================================================
+           RIGHT PANEL — LIVE PREVIEW
+      ====================================================== -->
+      <aside class="panel preview-panel">
+        <h2>Live Preview</h2>
+
+        <div id="previewWrap" class="preview-wrap" aria-live="polite">
+          <div id="qrPreview">
+            <p class="muted-text">Live preview will appear here.</p>
+          </div>
+        </div>
+
+        <div class="preview-controls">
+          <button id="downloadPng" class="btn success" disabled>Download PNG</button>
+          <button id="downloadSvg" class="btn success" disabled>Download SVG</button>
+        </div>
+
+        <div class="utility-controls">
+          <button id="copyQR" class="btn secondary">Copy QR</button>
+          <button id="resetBtn" class="btn danger">Reset</button>
+        </div>
+      </aside>
+
+    </section>
+  </main>
+
+  <!-- =========================================================
+       SCRIPT
+    ========================================================== -->
+  <script src="script.js"></script>
+
+</body>
+</html>

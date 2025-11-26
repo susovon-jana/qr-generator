@@ -1,0 +1,352 @@
+/* ============================================================
+   GLOBAL VARIABLES & ROOT SETTINGS
+============================================================ */
+:root {
+  --bg: #f5f7fa;
+  --panel: #ffffff;
+  --accent: #0f6ef4;
+  --muted: #6b7280;
+  --success: #16a34a;
+  --danger: #ef4444;
+  --border: #e6e9ee;
+  --radius: 10px;
+
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #0b1720;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  padding-top: 110px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   TOP HEADER
+============================================================ */
+.top-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 20px 18px;
+  z-index: 1200;
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent), #0a66d8);
+  box-shadow: 0 6px 20px rgba(9,30,66,0.12);
+}
+
+.top-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header-title {
+  text-align: center;
+  width: 100%;
+}
+
+.top-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+/* ============================================================
+   FLOATING BOXES (DESKTOP)
+============================================================ */
+.profile-box,
+.barcode-box {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 14px 20px;
+
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.28);
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  animation: softBlink 2.8s ease-in-out infinite;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+@keyframes softBlink {
+  0% { opacity: 1; }
+  50% { opacity: 0.65; }
+  100% { opacity: 1; }
+}
+
+/* ------------------------------------------------------------
+   DESKTOP ORDER  
+------------------------------------------------------------ */
+.profile-box { right: 180px; }
+.barcode-box { right: 10px; }
+
+/* Text inside boxes */
+.profile-name, .barcode-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #ffffff;
+  line-height: 1.25;
+  white-space: normal; /* allows 2-line text */
+}
+
+.profile-link, .barcode-link {
+  color: #eaffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.profile-link:hover, .barcode-link:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   MAIN CONTAINER LAYOUT
+============================================================ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.builder {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* ============================================================
+   PANELS & CARDS
+============================================================ */
+.panel {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid rgba(10,20,30,0.03);
+  box-shadow: 0 8px 22px rgba(13,26,40,0.06);
+}
+
+.card {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+
+/* ============================================================
+   FORM ELEMENTS
+============================================================ */
+.input-group { margin-bottom: 12px; }
+
+.input-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+  align-items: center;
+}
+
+label {
+  font-weight: 700;
+  color: #123;
+  margin-bottom: 6px;
+  display: block;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+  font-size: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+input[type="color"] {
+  height: 40px;
+  width: 56px;
+  padding: 3px;
+}
+
+input[type="range"] { width: 100%; }
+
+.range-label {
+  margin-top: 6px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.muted-text {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+.btn {
+  padding: 10px 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.success { background: var(--success); color: #fff; }
+.btn.secondary { background: #6b7280; color: #fff; }
+.btn.danger { background: var(--danger); color: #fff; }
+.full-width { width: 100%; }
+
+/* ============================================================
+   PREVIEW AREA
+============================================================ */
+.preview-wrap {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: linear-gradient(180deg, #fff, #f8fafc);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+#qrPreview > canvas,
+#qrPreview > svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.preview-controls,
+.utility-controls {
+  display: flex;
+  gap: 10px;
+}
+.utility-controls { margin-top: 6px; }
+
+/* ============================================================
+   ERROR MESSAGE
+============================================================ */
+.error {
+  margin-top: 8px;
+  font-weight: 800;
+  color: var(--danger);
+}
+
+/* ============================================================
+   TABLET RESPONSIVE
+============================================================ */
+@media (max-width: 980px) {
+  .builder { grid-template-columns: 1fr; }
+  .input-grid { grid-template-columns: 1fr; }
+  body { padding-top: 140px; }
+}
+
+/* ============================================================
+   MOBILE (700px)
+============================================================ */
+@media (max-width: 700px) {
+
+  body { padding-top: 160px !important; }
+
+  /* HEADER */
+  .top-header { padding: 10px 12px !important; min-height: 80px !important; }
+  .top-header-inner {
+    display: block !important;
+    text-align: center !important;
+    max-width: 330px;
+  }
+
+  .header-title { margin-bottom: 12px; }
+  .header-title h1 {
+    font-size: 1.35rem !important;
+    line-height: 1.15;
+    margin: 0 0 16px 0;
+  }
+
+  /* SECOND ROW — TWO BOXES */
+  .mobile-box-row {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px;
+    gap: 10px;
+  }
+
+  .profile-box,
+  .barcode-box {
+    flex: 1;
+    position: static !important;
+    transform: none !important;
+    animation: none !important;
+
+    padding: 10px 8px;
+    border-radius: 10px;
+  }
+
+  .profile-name, .barcode-name {
+    font-size: 0.85rem !important;
+  }
+
+  .profile-link, .barcode-link {
+    font-size: 0.70rem !important;
+  }
+
+  /* PREVIEW BUTTONS VERTICAL */
+  .preview-controls,
+  .utility-controls {
+    flex-direction: column;
+  }
+  .preview-controls button,
+  .utility-controls button {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   HOVER & CURSOR EFFECTS FOR PROFILE + BARCODE BOXES
+============================================================ */
+.profile-box,
+.barcode-box {
+  cursor: pointer; /* pointer cursor for both */
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Hover effects */
+.profile-box:hover,
+.barcode-box:hover {
+  transform: translateY(-55%) scale(1.06); /* small lift + zoom */
+  background: rgba(255, 255, 255, 0.30);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.35);
+}
